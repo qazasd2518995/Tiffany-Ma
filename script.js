@@ -153,17 +153,29 @@
     nums.forEach(function (n) { io.observe(n); });
   }
 
+  /* 學生作答學習單圖集 */
+  var WORKS = [
+    { src: "work-01.jpg", cap: "學生作答學習單" },
+    { src: "work-02.jpg", cap: "學生作答學習單" },
+    { src: "work-03.jpg", cap: "學生作答學習單" },
+    { src: "work-04.jpg", cap: "學生作答學習單" },
+    { src: "work-05.jpg", cap: "學生作答學習單" },
+    { src: "work-06.jpg", cap: "學生作答學習單" }
+  ];
+
   function initLightbox() {
     var lb = document.getElementById("lightbox");
     var lbImg = document.getElementById("lbImg");
     var lbCap = document.getElementById("lbCap");
     var current = 0;
+    var album = PHOTOS;
+    var dir = "assets/photos/";
 
     function open(i) {
-      current = (i + PHOTOS.length) % PHOTOS.length;
-      lbImg.src = "assets/photos/" + PHOTOS[current].src;
-      lbImg.alt = PHOTOS[current].cap;
-      lbCap.textContent = PHOTOS[current].cap + " ｜ " + (current + 1) + " / " + PHOTOS.length;
+      current = (i + album.length) % album.length;
+      lbImg.src = dir + album[current].src;
+      lbImg.alt = album[current].cap;
+      lbCap.textContent = album[current].cap + " ｜ " + (current + 1) + " / " + album.length;
       lb.classList.add("is-open");
       lb.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -177,8 +189,19 @@
 
     document.getElementById("galleryGrid").addEventListener("click", function (e) {
       var item = e.target.closest(".gal__item");
-      if (item) open(parseInt(item.getAttribute("data-index"), 10));
+      if (!item) return;
+      album = PHOTOS; dir = "assets/photos/";
+      open(parseInt(item.getAttribute("data-index"), 10));
     });
+    var worksGrid = document.getElementById("worksGrid");
+    if (worksGrid) {
+      worksGrid.addEventListener("click", function (e) {
+        var item = e.target.closest(".works__item");
+        if (!item) return;
+        album = WORKS; dir = "assets/students/";
+        open(parseInt(item.getAttribute("data-windex"), 10));
+      });
+    }
     document.getElementById("lbClose").addEventListener("click", close);
     document.getElementById("lbPrev").addEventListener("click", function () { step(-1); });
     document.getElementById("lbNext").addEventListener("click", function () { step(1); });
