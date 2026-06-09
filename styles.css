@@ -574,6 +574,7 @@ img { display: block; max-width: 100%; }
   .lb__nav { width: 44px; height: 44px; font-size: 26px; }
   .lb__prev { left: 8px; } .lb__next { right: 8px; }
   .foot__row { flex-direction: column; gap: 10px; }
+  .hero__scroll { display: none; }
 }
 @media (max-width: 440px) {
   .hero__stats { grid-template-columns: 1fr 1fr; }
