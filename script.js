@@ -163,6 +163,13 @@
     { src: "work-06.jpg", cap: "學生作答學習單" }
   ];
 
+  /* Chit-chat 完整版 14 頁圖集 */
+  var CHITCHAT = [];
+  for (var ci = 1; ci <= 14; ci++) {
+    var cn = ci < 10 ? "0" + ci : "" + ci;
+    CHITCHAT.push({ src: "page-" + cn + ".jpg", cap: "Chit-chat 完整版" });
+  }
+
   function initLightbox() {
     var lb = document.getElementById("lightbox");
     var lbImg = document.getElementById("lbImg");
@@ -202,6 +209,19 @@
         open(parseInt(item.getAttribute("data-windex"), 10));
       });
     }
+    function openChitchat() {
+      album = CHITCHAT; dir = "assets/chitchat/";
+      open(0);
+    }
+    var ccCover = document.getElementById("ccCover");
+    var ccBrowse = document.getElementById("ccBrowse");
+    if (ccCover) {
+      ccCover.addEventListener("click", openChitchat);
+      ccCover.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openChitchat(); }
+      });
+    }
+    if (ccBrowse) ccBrowse.addEventListener("click", openChitchat);
     document.getElementById("lbClose").addEventListener("click", close);
     document.getElementById("lbPrev").addEventListener("click", function () { step(-1); });
     document.getElementById("lbNext").addEventListener("click", function () { step(1); });
