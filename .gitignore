@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# gstack 本地工具資料
+.gstack/
+
+# 編輯器
+.vscode/
+.idea/
